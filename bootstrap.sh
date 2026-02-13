@@ -21,7 +21,7 @@ echo "Настраиваем git добавляем user и почту"
 if [ -n "$1" ] && [ -n "$2" ]; then 
 	USER_NAME="$1"
 	USER_EMAIL="$2"
-elif [ -z "$1" ] && [ -z "$2"]; then
+elif [ -z "$1" ] && [ -z "$2" ]; then
 	USER_NAME="yukutakanawa"
 	USER_EMAIL="yukutakanawa@gmail.com"
 else 
