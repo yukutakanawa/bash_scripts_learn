@@ -7,6 +7,13 @@
 # Аргумент для вывода информации
 SYSINFO=$1
 
+# Цвета для вывода
+RED='\033[0;31m'
+YELLOW='\033[0;33m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No color
+
+
 # Делаем переменную для текущей даты
 DATE=$(date)
 
@@ -31,8 +38,7 @@ case "$SYSINFO" in
 		done
 		;;
 	mem)
-		# Загрузка системы
-echo "Загрузка системы: $(uptime | tail -1 | sed 's/.*average://' | xargs)"
+
 # Память
                         ALL_MEMORY=$(free -h | head -2 | tail -1 | awk '{print $2}' | sed "s/[a-zA-Z]//g")
                         FREE_MEMORY=$(free -h | head -2 | tail -1 | awk '{print $4}' | sed "s/[a-zA-Z]//g")
@@ -41,12 +47,6 @@ echo "Загрузка системы: $(uptime | tail -1 | sed 's/.*average://'
 
                 # Делаем проверку на заполнение памяти
                        COMPLITED=$((USED_MEMORY * 100 / ALL_MEMORY))
-
-                # Цвета для вывода
-                        RED='\033[0;31m'
-                        YELLOW='\033[0;33m'
-                        GREEN='\033[0;32m'
-                        NC='\033[0m' # No color
 
                         if [ $COMPLITED -gt 74 ]; then
                                 echo -e  "Память: всего "$ALL_MEMORY"G, свободно "$FREE_MEMORY"G ("${RED}" "$COMPLITED"% занято "${NC}") Высокая загруженость"
@@ -79,13 +79,6 @@ echo "Загрузка системы: $(uptime | tail -1 | sed 's/.*average://'
 
 			# Делаем проверку на заполнение памяти
 			COMPLITED=$((USED_MEMORY * 100 / ALL_MEMORY))
-
-			# Цвета для вывода
-			RED='\033[0;31m'
-			YELLOW='\033[0;33m'
-			GREEN='\033[0;32m'
-			NC='\033[0m' # No color
-
 			if [ $COMPLITED -gt 74 ]; then
 				 echo -e  "Память: всего "$ALL_MEMORY"G, свободно "$FREE_MEMORY"G ("${RED}" "$COMPLITED"% занято "${NC}") Высокая загруженость"
 
