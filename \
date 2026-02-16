@@ -40,7 +40,7 @@ echo "Загрузка системы: $(uptime | tail -1 | sed 's/.*average://'
 
 
                 # Делаем проверку на заполнение памяти
-                       COMPLITED=$((USED_MEMORY * 100 / ALL_MEMORY))
+                        PLITED=$((USED_MEMORY * 100 / ALL_MEMORY))
 
                 # Цвета для вывода
                         RED='\033[0;31m'
