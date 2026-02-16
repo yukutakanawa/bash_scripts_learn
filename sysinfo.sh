@@ -64,7 +64,7 @@ case "$SYSINFO" in
 			DISK_USED=$(df -h | head -2 | tail -1 | awk '{print $3}')
 			DISK_FREE=$(df -h | head -2 | tail -1 | awk '{print $4}')
 
-			echo "Диск /: $DISK_USED использавано, $DISK_FREE свободно"
+			echo "Диск /: $DISK_USED использовано, $DISK_FREE свободно"
 			;;
 		*)
 			# Вывод информации о системе
@@ -94,7 +94,7 @@ else
 DISK_USED=$(df -h | head -2 | tail -1 | awk '{print $3}')
 DISK_FREE=$(df -h | head -2 | tail -1 | awk '{print $4}')
 
-echo "Диск /: $DISK_USED использавано, $DISK_FREE свободно"
+echo "Диск /: $DISK_USED использовано, $DISK_FREE свободно"
 
 # Топ-3 процесса по CPU
 echo "Топ-3 процесса по CPU:"
