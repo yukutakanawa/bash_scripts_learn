@@ -8,10 +8,6 @@
 # Делаем переменную для текущей даты
 DATE=$(date)
 
-# Переменная для загрузки системы
-DOWNLOAD_SYS=$()
-
-
 echo "Системный отчёт: $DATE"
 echo "-------------------------"
 
@@ -27,15 +23,21 @@ USED_MEMORY=$(free -h | head -2 | tail -1 | awk '{print $3}' | sed "s/[a-zA-Z]//
 # Делаем проверку на заполнение памяти
 COMPLITED=$((USED_MEMORY * 100 / ALL_MEMORY))
 
+# Цвета для вывода
+RED='\033[0;31m'
+YELLOW='\033[0;33m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No color
+
 if [ $COMPLITED -gt 74 ]; then
-	echo "Память: всего "$ALL_MEMORY"G, свободно "$FREE_MEMORY"G ("$COMPLITED"% занято) Высокая загруженость"
-	exit 0
+	echo -e  "Память: всего "$ALL_MEMORY"G, свободно "$FREE_MEMORY"G ("${RED}" "$COMPLITED"% занято "${NC}") Высокая загруженость"
+
 elif [ $COMPLITED -gt 49 ]; then
-	echo "Память: всего "$ALL_MEMORY"G, свободно "$FREE_MEMORY"G ("$COMPLITED"% занято) Средняя загруженость"
+	echo -e "Память: всего "$ALL_MEMORY"G, свободно "$FREE_MEMORY"G ("${YELLOW}" "$COMPLITED"% занято "${NC}") Средняя загруженость"
 elif [ $COMPLITED -gt 24 ]; then
-	echo "Память: всего "$ALL_MEMORY"G, свободно "$FREE_MEMORY"G ("$COMPLITED"% занято) Умеренная загруженость"
+	echo -e "Память: всего "$ALL_MEMORY"G, свободно "$FREE_MEMORY"G ("${GREEN}" "$COMPLITED"% занято "${NC}") Умеренная загруженость"
 else
-	echo "Память: всего "$ALL_MEMORY"G, свободно "$FREE_MEMORY"G ("$COMPLITED"% занято) Слабая загруженость"
+	echo -e "Память: всего "$ALL_MEMORY"G, свободно "$FREE_MEMORY"G ("${NC}" "$COMPLITED"% занято) Слабая загруженость"
 fi
 
 # Дисковое пространство
@@ -46,7 +48,7 @@ echo "Диск /: $DISK_USED использавано, $DISK_FREE свободн
 
 # Топ-3 процесса по CPU
 echo "Топ-3 процесса по CPU:"
-ps aux --sort=-%cpu | head -4 | while read line; do
+ps aux --sort=-%cpu | head -4 | tail -3 | while read line; do
 	pid=$(echo $line | awk '{print $2}')
 	proc=$(echo $line | awk '{print $11}')
 	cpu=$(echo $line | awk '{print $3}')
