@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Лог файл вывода
-LOG_FILE="sys_info$(date '+%Y%m%d').log"
-exec > >(tee -a "$LOG_FILE") 2>&1
+#LOG_FILE="sys_info$(date '+%Y%m%d').log"
+#exec > >(tee -a "$LOG_FILE") 2>&1
 
 # Системный отчет
 # Делаем переменную для текущей даты
