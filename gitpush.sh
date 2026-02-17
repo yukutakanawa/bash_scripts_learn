@@ -18,7 +18,6 @@ if [ -z "$(git status --porcelain)" ]; then
 	exit 0
 fi
 
-
 # Делаем проверку что аргумент передали
 if [ -z "$COMMIT" ]; then
 	echo "Вы не ввели сообщение, введите сообщение commit"
