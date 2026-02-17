@@ -1,0 +1,21 @@
+# swap files
+.*.sw?
+*.sw?
+.*.swp
+*.swp
+.*.swo
+*.swo
+.*.swn
+*.swn
+.*.swl
+*.swl
+
+# Vim swap files
+*.swp
+*.swo
+*.swn
+*.swl
+.*.swp
+.*.swo
+.*.swn
+.*.swl
