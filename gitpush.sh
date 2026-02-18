@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Скрипт для git
+COMMIT=$1
+
 
 # Проверка что мы в git репозитории
 if ! git rev-parse --git-dir > /dev/null 2>&1; then
