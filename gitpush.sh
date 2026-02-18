@@ -2,15 +2,11 @@
 
 # Скрипт для git
 
-# Принимаем первый аргумент
-COMMIT=$1
-
 # Проверка что мы в git репозитории
 if ! git rev-parse --git-dir > /dev/null 2>&1; then
 	echo "Ошибка это не git репозиторий"
 	exit 1
 fi
-
 
 # Проверка есть ли изменения
 if [ -z "$(git status --porcelain)" ]; then
@@ -24,14 +20,13 @@ if [ -z "$COMMIT" ]; then
 	read COMMIT
 fi
 
-
 echo "Добавляем все изменения"
 git add .
 
 echo "Делаем коммит и берем его из первого аргумента"
 git commit -m "$COMMIT"
 
-echo "Пушим наш результат в репозиторий"
-git push origin main
-
+echo "Показываем нужную нам ветку"
+CURRENT_BRANCH=$(git branch)
+git "$CURRENT_BRANCH"
 
