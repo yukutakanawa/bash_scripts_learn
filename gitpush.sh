@@ -27,6 +27,10 @@ echo "Делаем коммит и берем его из первого арг�
 git commit -m "$COMMIT"
 
 echo "Показываем нужную нам ветку"
-CURRENT_BRANCH=$(git branch)
+if git branch --shown-currnet > /dev/null 2>&1; then
+	CURRENT_BRANCH=$(git branch --shown-current)
+else
+	CURRENT_BRANCH=$(git branch --abbrev-ref HEAD)
+fi
 git push origin "$CURRENT_BRANCH"
 
