@@ -28,5 +28,5 @@ git commit -m "$COMMIT"
 
 echo "Показываем нужную нам ветку"
 CURRENT_BRANCH=$(git branch)
-git "$CURRENT_BRANCH"
+git push origin "$CURRENT_BRANCH"
 
