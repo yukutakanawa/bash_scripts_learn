@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Дата в переменной
+DATE_YMD=$(date %Y-%m-%d)
+DATE_HMS=$(date %H:%M:%S)
+
+# Получаем процент использования диска
+DISK_USED=$(df -h / | tail -1 | awk '{print $5}' | sed 's/%//')
+
+# Создаем условие проверки
+if [ "$DISK_USED" -ge 85 ]; then
+	echo ""
+elif [ "$DISK_USED" -ge 70 ]; then
+	echo "Много"
+else 
+	echo "Норм"
+fi
+
+
+echo "$DATE_YMD"
+echo "$DATE_HMS"
